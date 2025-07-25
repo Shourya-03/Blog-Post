@@ -1,0 +1,365 @@
+<style>
+    html { scroll-behavior: smooth; }
+    #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+    }
+    .preloader-spinner {
+        border: 4px solid #ccc;
+        border-top: 4px solid #0073aa;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+    }
+    body {
+        background: #f7f8fa;
+        margin: 0;
+        padding: 0;
+        font-family: 'Open Sans', sans-serif;
+        color: #222;
+    }
+    h1, h2 {
+        margin: 0 0 1rem 0;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+    @media (max-width: 768px) {
+        h1, h2 {
+            font-size: 1.5rem !important;
+        }
+        .grid-cards {
+            grid-template-columns: 1fr !important;
+        }
+        .testimonial-container {
+            flex-direction: column !important;
+            align-items: center;
+        }
+        .custom-blog ul {
+            padding-left: 0;
+        }
+        .newsletter-form input,
+        .newsletter-form button {
+            width: 100% !important;
+            border-radius: 8px !important;
+            margin-bottom: 10px;
+        }
+    }
+    .hover-zoom {
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .hover-zoom:hover {
+        transform: scale(1.04);
+        box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    }
+    .btn {
+        transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        cursor: pointer;
+        display: inline-block;
+    }
+    .btn:hover {
+        opacity: 0.85;
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+    }
+    .footer a:hover {
+        text-decoration: underline;
+        color: #fff;
+    }
+    /* BLOG SECTION STYLE */
+    .custom-blog ul {
+        padding-left: 0;
+        margin: 0;
+    }
+    .custom-blog li {
+        list-style: none;
+        background: #fff;
+        padding: 24px;
+        border-radius: 14px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s;
+        margin-bottom: 30px;
+        border-left: 4px solid #0073aa;
+    }
+    .custom-blog li:hover {
+        transform: scale(1.04);
+        box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+        border-left: 4px solid #005580;
+    }
+    .custom-blog li a {
+        font-weight: bold;
+        color: #0073aa;
+        font-size: 1.2rem;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+    .custom-blog li a:hover {
+        text-decoration: underline;
+        color: #005580;
+    }
+    .custom-blog time {
+        display: block;
+        margin: 0.5rem 0;
+        font-size: 0.85rem;
+        color: #888;
+    }
+    .custom-blog .wp-block-latest-posts__excerpt {
+        font-size: 1rem;
+        color: #444;
+        margin-top: 0.5rem;
+    }
+    /* TESTIMONIALS */
+    .testimonial-container {
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .testimonial-card {
+        background: linear-gradient(135deg, #fff 80%, #e8e9eb 100%);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.07);
+        border-radius: 14px;
+        padding: 32px 24px;
+        max-width: 320px;
+        text-align: center;
+        transition: box-shadow 0.3s;
+    }
+    .testimonial-card:hover {
+        box-shadow: 0 12px 32px rgba(0,0,0,0.13);
+    }
+    .testimonial-card img {
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border: 3px solid #0073aa;
+        margin-bottom: 1rem;
+        transition: border-color 0.2s;
+    }
+    .testimonial-card:hover img {
+        border-color: #005580;
+    }
+    .testimonial-card p {
+        font-style: italic;
+        margin-top: 1rem;
+        color: #222;
+    }
+    .testimonial-card strong {
+        display: block;
+        margin-top: 0.75rem;
+        color: #0073aa;
+    }
+    /* NEWSLETTER */
+    .newsletter-form {
+        max-width: 500px;
+        margin: auto;
+        display: flex;
+        gap: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .newsletter-form input {
+        padding: 0.75rem;
+        width: 70%;
+        border-radius: 8px 0 0 8px;
+        border: 1px solid #ccc;
+        border-right: none;
+        font-size: 1rem;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+    .newsletter-form input:focus {
+        border-color: #0073aa;
+    }
+    .newsletter-form button {
+        padding: 0.8rem 1.5rem;
+        border: none;
+        border-radius: 0 8px 8px 0;
+        background: #111;
+        color: #fff;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: background 0.2s;
+    }
+    .newsletter-form button:hover {
+        background: #0073aa;
+    }
+    /* FOOTER */
+    .footer {
+        background: linear-gradient(90deg, #222 80%, #0073aa 100%);
+        color: #ccc;
+        text-align: center;
+        padding: 40px 20px;
+        font-size: 1rem;
+    }
+    .footer a {
+        color: #ccc;
+        margin: 0 10px;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+    .footer a:hover {
+        color: #fff;
+    }
+    .footer .social-links a {
+        margin: 0 8px;
+        color: #ccc;
+        font-size: 1.1rem;
+    }
+    .footer .social-links a:hover {
+        color: #fff;
+    }
+    /* PRELOADER SPINNER ANIMATION */
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+<body>
+<!-- PRELOADER -->
+<div id="preloader">
+    <div class="preloader-spinner"></div>
+</div>
+<script>
+    window.addEventListener('load', function () {
+        document.getElementById('preloader').style.display = 'none';
+    });
+</script>
+
+<!-- HERO SECTION -->
+<section style="margin-bottom:60px;">
+    <div style="
+        background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), 
+        url('https://introagent.co.uk/wp-content/uploads/2025/07/nature-quotes-landscape-1648265648.avif'); 
+        background-size:cover; 
+        background-position:center; 
+        padding:100px 20px; 
+        text-align:center; 
+        color:#fff; 
+        border-radius:12px; 
+        box-shadow:0 8px 32px rgba(0,0,0,0.12);">
+        <div style="max-width:800px; margin:auto;">
+            <h1 style="
+                font-size:clamp(2rem, 6vw, 3rem); 
+                margin-bottom:0.5rem; 
+                line-height:1.4; 
+                font-weight:700;
+                letter-spacing: 1px;">
+                The Unconventional Life
+            </h1>
+            <p style="font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: 500;">
+            Who wants to be normal? When you can be a Stranger.
+            </p>
+            <p style="font-size: 1.2rem; font-weight: 500; unicode-bidi: bidi-override; display: inline-block; margin: 0;">Danger!
+            </p>
+            <div style="margin-top: 1.5rem;">
+                <a class="btn hover-zoom" href="#blog" style="background: #fff; color: #0073aa; padding: 0.75rem 2rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block;line-height: 1; margin: 0; vertical-align: middle; "> Explore Now
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA SECTION -->
+<section style="background: linear-gradient(to right, #f8f9fa, #e8e9eb); padding: 60px 20px; text-align: center; border-radius: 12px; box-shadow:0 4px 16px rgba(0,0,0,0.07);">
+    <h2 style="font-size: 2rem; margin-bottom: 1rem; color:#0073aa;">Live Unconventionally</h2>
+    <p style="font-size: 1.15rem; margin-bottom: 2rem; max-width: 700px; margin-inline: auto; color: #333;">
+        Discover real stories, bold ideas, and timeless lessons on income, relationships, and community.
+    </p>
+    <a class="btn hover-zoom" style="background: #0073aa; color: #fff; padding: 0.75rem 2.5rem; border-radius: 8px; font-weight: 600; text-decoration: none;" href="#newsletter">Start Living Differently</a>
+</section>
+
+<!-- BLOG SECTION -->
+<section id="blog" style="padding: 60px 20px;">
+    <h2 style="text-align: center; font-size: 2rem; margin-bottom: 2rem; color:#0073aa;">Blog Posts</h2>
+
+<!-- Inspiring -->
+<div id="inspiring"></div>
+<div style="margin-bottom: 3rem;">
+    <h3 style="color:#333; font-size: 1.5rem; margin-bottom: 1rem;">Inspiring</h3>
+    <ul class="custom-blog" style="display: flex; flex-direction: column; gap: 30px; padding-left: 0; margin: 0;">
+        <li class="hover-zoom">
+            <a href="https://introagent.co.uk/the-unconventional-life/">The Ships I Didn’t Board</a>
+            <time datetime="2025-07-23">July 23, 2025</time>
+            <div class="wp-block-latest-posts__excerpt">
+                A deeply personal journey through signs, struggles, and moments of divine intervention. Discover how missed signs may have been your answered prayers all along.
+            </div>
+        </li>
+        <li class="hover-zoom">
+            <a href="https://introagent.co.uk/the-book-the-doctor-and-the-ayah/">The Book, the Doctor, and the Ayah</a>
+            <time datetime="2025-07-10">July 10, 2025</time>
+            <div class="wp-block-latest-posts__excerpt">
+                A heart-touching reflection on compassion, healing, and unexpected bonds that shape our understanding of love and care across cultures.
+            </div>
+        </li>
+    </ul>
+</div>
+    <!-- Travel -->
+<div id="travel"></div> 
+    <div style="margin-bottom: 3rem;">
+        <h3 style="color:#333; font-size: 1.5rem; margin-bottom: 1rem;">Travel</h3>
+        <ul class="custom-blog" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding-left: 0; margin: 0;">
+        </ul>
+    </div>
+
+    <!-- Finances -->
+<div id="finance"></div>
+
+    <div style="margin-bottom: 3rem;">
+        <h3 style="color:#333; font-size: 1.5rem; margin-bottom: 1rem;">Finances</h3>
+        <ul class="custom-blog" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding-left: 0; margin: 0;">
+        </ul>
+    </div>
+
+    <!-- Health -->
+<div id="health"></div>
+    <div style="margin-bottom: 3rem;">
+        <h3 style="color:#333; font-size: 1.5rem; margin-bottom: 1rem;">Health</h3>
+        <ul class="custom-blog" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding-left: 0; margin: 0;">
+        </ul>
+    </div>
+</section>
+<!-- TESTIMONIALS -->
+<section style="padding: 60px 20px;">
+    <h2 style="text-align: center; font-size: 2rem; margin-bottom: 2rem; color:#0073aa;">Real Voices</h2>
+    <div class="testimonial-container">
+        <div class="testimonial-card hover-zoom">
+            <img src="https://images.unsplash.com/photo-1521191725298-2ce8daece44b?q=85&w=98&h=108&fit=crop" alt="Testimonial 1">
+            “This blog has transformed my perspective on family life and relationships. Highly recommended!”
+            <strong>– Maya, London</strong>
+        </div>
+        <div class="testimonial-card hover-zoom">
+            <img src="https://images.unsplash.com/photo-1509695907282-a323f3c54b30?q=85&w=98&h=108&fit=crop" alt="Testimonial 2">
+            “Incredible insights on community and income. A must-read for everyone navigating life!”
+            <strong>– Jack, Manchester</strong>
+        </div>
+        <div class="testimonial-card hover-zoom">
+            <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=85&w=98&h=108&fit=crop" alt="Testimonial 3">
+            “I love the practical advice and the positive energy. It’s helped me make real changes!”
+            <strong>– Priya, Birmingham</strong>
+        </div>
+    </div>
+</section>
+
+<!-- NEWSLETTER SIGNUP -->
+<section id="newsletter" style="background: #f0f0f0; padding: 60px 20px; text-align: center;">
+    <h2 style="margin-bottom: 1rem; color:#0073aa;">Get Unconventional Updates</h2>
+    <p style="margin-bottom: 2rem;">Join our newsletter for new blog posts, behind-the-scenes, and monthly life tips.</p>
+    <!-- TODO: Set the 'action' attribute to your newsletter backend endpoint, e.g. '/subscribe' or an external service URL -->
+    <form class="newsletter-form" action="#" method="POST">
+        <input name="email" required type="email" placeholder="Enter your email">
+        <button class="btn" type="submit">Subscribe</button>
+    </form>
+    <small style="display:block; margin-top:1rem; color:#888;">We respect your privacy. Unsubscribe anytime.</small>
+</section>
+</body>
+</html
