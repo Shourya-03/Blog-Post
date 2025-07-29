@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>The Unconventional Life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Fonts -------------------------------------------------------------->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+
+  <!-- Critical CSS ------------------------------------------------------->
+  <link rel="preload" href="/css/main.css" as="style">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <!-- Hero image (responsive + preload) --------------------------------->
+  <link rel="preload"
+        as="image"
+        href="/img/hero@1920.webp"
+        imagesrcset="/img/hero@640.webp 640w,
+                     /img/hero@1280.webp 1280w,
+                     /img/hero@1920.webp 1920w"
+        imagesizes="100vw"
+        type="image/webp"
+        fetchpriority="high">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Preloader ---------------------------------------------------------->
+  <div id="preloader" role="status" aria-live="assertive" aria-busy="true">
+    <span class="sr-only">Loading content, please wait…</span>
+    <div class="preloader-spinner" aria-hidden="true"></div>
+  </div>
+
+  <!-- Header ------------------------------------------------------------->
+  <header class="site-header">
+    <nav class="site-nav">
+      <a class="brand" href="/">Unconventional Life</a>
+      <ul>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#newsletter">Newsletter</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main --------------------------------------------------------------->
+  <main id="main">
+
+    <!-- Hero section -->
+    <section class="hero">
+      <picture>
+        <source type="image/webp"
+                srcset="/img/hero@640.webp 640w,
+                        /img/hero@1280.webp 1280w,
+                        /img/hero@1920.webp 1920w"
+                sizes="100vw">
+        <img src="/img/hero@1280.jpg"
+             width="1920"
+             height="1080"
+             alt="Mountain valley at sunrise"
+             loading="eager"
+             decoding="async">
+      </picture>
+
+      <div class="hero-text">
+        <h1>The Unconventional Life</h1>
+        <p>Who wants to be normal when you can be a Stranger? <span class="danger">Danger!</span></p>
+        <a class="btn" href="#blog">Explore Now</a>
+      </div>
+    </section>
+
+    <!-- Call-to-action -->
+    <section class="cta">
+      <h2>Live Unconventionally</h2>
+      <p>Discover real stories, bold ideas, and timeless lessons on income, relationships, and community.</p>
+      <a class="btn btn-primary" href="#newsletter">Start Living Differently</a>
+    </section>
+
+    <!-- Blog categories -->
+    <section id="blog" class="blog">
+      <h2>Blog Posts</h2>
+
+      <!-- Inspiring -->
+      <section aria-labelledby="inspiring-head">
+        <h3 id="inspiring-head">Inspiring</h3>
+        <div class="card-grid">
+          <article class="post-card">
+            <h4><a href="https://introagent.co.uk/the-unconventional-life/">The Ships I Didn’t Board</a></h4>
+            <time datetime="2025-07-23">23 Jul 2025</time>
+            <p>A deeply personal journey through signs, struggles, and moments of divine intervention…</p>
+          </article>
+
+          <article class="post-card">
+            <h4><a href="https://introagent.co.uk/the-book-the-doctor-and-the-ayah/">The Book, the Doctor, and the Ayah</a></h4>
+            <time datetime="2025-07-10">10 Jul 2025</time>
+            <p>A heart-touching reflection on compassion, healing, and bonds that shape our understanding of love.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Travel / Finances / Health placeholder categories -->
+      <section aria-labelledby="travel-head">
+        <h3 id="travel-head">Travel</h3>
+        <div class="card-grid" id="travel"></div>
+      </section>
+
+      <section aria-labelledby="finance-head">
+        <h3 id="finance-head">Finances</h3>
+        <div class="card-grid" id="finance"></div>
+      </section>
+
+      <section aria-labelledby="health-head">
+        <h3 id="health-head">Health</h3>
+        <div class="card-grid" id="health"></div>
+      </section>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+      <h2>Real Voices</h2>
+      <ul class="testimonial-container">
+        <li class="testimonial-card">
+          <figure>
+            <img src="https://images.unsplash.com/photo-1521191725298-2ce8daece44b?q=85&w=100&h=100&fit=crop" alt="Maya from London">
+            <figcaption>
+              “This blog has transformed my perspective on family life and relationships.”<br><strong>— Maya, London</strong>
+            </figcaption>
+          </figure>
+        </li>
+
+        <li class="testimonial-card">
+          <figure>
+            <img src="https://images.unsplash.com/photo-1509695907282-a323f3c54b30?q=85&w=100&h=100&fit=crop" alt="Jack from Manchester">
+            <figcaption>
+              “Incredible insights on community and income. A must-read!”<br><strong>— Jack, Manchester</strong>
+            </figcaption>
+          </figure>
+        </li>
+
+        <li class="testimonial-card">
+          <figure>
+            <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=85&w=100&h=100&fit=crop" alt="Priya from Birmingham">
+            <figcaption>
+              “I love the practical advice and the positive energy.”<br><strong>— Priya, Birmingham</strong>
+            </figcaption>
+          </figure>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Newsletter -->
+    <section id="newsletter" class="newsletter">
+      <h2>Get Unconventional Updates</h2>
+      <p>Join our newsletter for new posts, behind-the-scenes, and monthly tips.</p>
+
+      <form class="newsletter-form" action="#" method="POST">
+        <label for="email" class="sr-only">Email address</label>
+        <input id="email" name="email" type="email" placeholder="Enter your email" required>
+        <button class="btn btn-primary" type="submit">Subscribe</button>
+      </form>
+
+      <small id="privacy" aria-live="polite">We respect your privacy. Unsubscribe anytime.</small>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" id="contact">
+    <p>&copy; 2025 The Unconventional Life.</p>
+    <nav class="social-links" aria-label="Social media">
+      <a href="#" aria-label="X / Twitter">@UnconventionalLife</a>
+      <a href="#" aria-label="Instagram">Instagram</a>
+      <a href="#" aria-label="LinkedIn">LinkedIn</a>
+    </nav>
+  </footer>
+
+  <!-- Loader JS ---------------------------------------------------------->
+  <script src="/js/loader.js" defer></script>
+</body>
+</html>
