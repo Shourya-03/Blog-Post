@@ -1,183 +1,410 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>The Unconventional Life</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Fonts -------------------------------------------------------------->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-
-  <!-- Critical CSS ------------------------------------------------------->
-  <link rel="preload" href="css/main.css" as="style">
-  <link rel="stylesheet" href="css/main.css">
-
-  <!-- Hero image (responsive + preload) --------------------------------->
-  <link rel="preload"
-        as="image"
-        href="img/hero@1920.webp"
-        imagesrcset="img/hero@640.webp 640w,
-                     img/hero@1280.webp 1280w,
-                     img/hero@1920.webp 1920w"
-        imagesizes="100vw"
-        type="image/webp"
-        fetchpriority="high">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Unconventional Life - Live Differently</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Discover real stories, bold ideas, and timeless lessons on income, relationships, and community. Live unconventionally.">
+    <meta name="keywords" content="unconventional life, blog, lifestyle, inspiration, personal development">
+    <meta name="author" content="The Unconventional Life">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="The Unconventional Life">
+    <meta property="og:description" content="Live unconventionally with inspiring stories and bold ideas">
+    <meta property="og:image" content="img/hero-image.jpg">
+    <meta property="og:url" content="https://unconventionallife.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="img/favicon.svg">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-  <a class="skip-link" href="#main">Skip to main content</a>
-
-  <!-- Preloader ---------------------------------------------------------->
-  <div id="preloader" role="status" aria-live="assertive" aria-busy="true">
-    <span class="sr-only">Loading content, please wait…</span>
-    <div class="preloader-spinner" aria-hidden="true"></div>
-  </div>
-
-  <!-- Header ------------------------------------------------------------->
-  <header class="site-header">
-    <nav class="site-nav">
-      <a class="brand" href="/">Unconventional Life</a>
-      <ul>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#newsletter">Newsletter</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- Main --------------------------------------------------------------->
-  <main id="main">
-
-    <!-- Hero section -->
-    <section class="hero">
-      <picture>
-        <source type="image/webp"
-                srcset="img/hero@640.webp 640w,
-                        img/hero@1280.webp 1280w,
-                        img/hero@1920.webp 1920w"
-                sizes="100vw">
-        <img src="img/hero@1280.jpg"
-             width="1920"
-             height="1080"
-             alt="Mountain valley at sunrise"
-             loading="eager"
-             decoding="async">
-      </picture>
-
-      <div class="hero-text">
-        <h1>The Unconventional Life</h1>
-        <p>Who wants to be normal when you can be a Stranger? <span class="danger">Danger!</span></p>
-        <a class="btn" href="#blog">Explore Now</a>
-      </div>
-    </section>
-
-    <!-- Call-to-action -->
-    <section class="cta">
-      <h2>Live Unconventionally</h2>
-      <p>Discover real stories, bold ideas, and timeless lessons on income, relationships, and community.</p>
-      <a class="btn btn-primary" href="#newsletter">Start Living Differently</a>
-    </section>
-
-    <!-- Blog categories -->
-    <section id="blog" class="blog">
-      <h2>Blog Posts</h2>
-
-      <!-- Inspiring -->
-      <section aria-labelledby="inspiring-head">
-        <h3 id="inspiring-head">Inspiring</h3>
-        <div class="card-grid">
-          <article class="post-card">
-            <h4><a href="https://introagent.co.uk/the-unconventional-life/">The Ships I Didn’t Board</a></h4>
-            <time datetime="2025-07-23">23 Jul 2025</time>
-            <p>A deeply personal journey through signs, struggles, and moments of divine intervention…</p>
-          </article>
-
-          <article class="post-card">
-            <h4><a href="https://introagent.co.uk/the-book-the-doctor-and-the-ayah/">The Book, the Doctor, and the Ayah</a></h4>
-            <time datetime="2025-07-10">10 Jul 2025</time>
-            <p>A heart-touching reflection on compassion, healing, and bonds that shape our understanding of love.</p>
-          </article>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <a href="#" class="brand-link">
+                        <span class="brand-text">Unconventional Life</span>
+                    </a>
+                </div>
+                
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                </button>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item">
+                        <a href="#blog" class="nav-link">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#newsletter" class="nav-link">Newsletter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#faq" class="nav-link">FAQ</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-      </section>
+    </header>
 
-      <!-- Travel / Finances / Health placeholder categories -->
-      <section aria-labelledby="travel-head">
-        <h3 id="travel-head">Travel</h3>
-        <div class="card-grid" id="travel"></div>
-      </section>
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-background">
+                <img src="img/hero-640.jpg" alt="Mountain landscape at sunset" class="hero-image" loading="eager">
+            </div>
+            <div class="hero-content">
+                <div class="container">
+                    <h1 class="hero-title">
+                        The <span class="highlight">Unconventional</span> Life
+                    </h1>
+                    <p class="hero-subtitle">
+                        Who wants to be normal when you can be a Stranger? 
+                        <span class="danger-text">Danger!</span>
+                    </p>
+                    <a href="#blog" class="cta-button">Explore Now</a>
+                </div>
+            </div>
+        </section>
 
-      <section aria-labelledby="finance-head">
-        <h3 id="finance-head">Finances</h3>
-        <div class="card-grid" id="finance"></div>
-      </section>
+        <!-- Featured Posts Slider -->
+        <section class="featured-section">
+            <div class="container">
+                <h2 class="section-title">Featured this month</h2>
+                <div class="slider-wrapper">
+                    <button class="slider-btn slider-btn-prev" id="sliderPrev" aria-label="Previous slide">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    
+                    <div class="slider-container" id="sliderContainer">
+                        <div class="slide">
+                            <div class="slide-image">
+                                <img src="img/feature-1.jpg" alt="Journey to the Untamed" loading="lazy">
+                            </div>
+                            <div class="slide-content">
+                                <h3 class="slide-title">Journey to the Untamed</h3>
+                                <p class="slide-description">Exploring the wild unknown and finding yourself in the process.</p>
+                                <a href="#" class="slide-link">Read More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="slide">
+                            <div class="slide-image">
+                                <img src="img/feature-2.jpg" alt="Hidden Lessons in Loss" loading="lazy">
+                            </div>
+                            <div class="slide-content">
+                                <h3 class="slide-title">Hidden Lessons in Loss</h3>
+                                <p class="slide-description">What grief teaches us about strength and resilience.</p>
+                                <a href="#" class="slide-link">Read More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="slide">
+                            <div class="slide-image">
+                                <img src="img/feature-3.jpg" alt="Entrepreneur's Corner" loading="lazy">
+                            </div>
+                            <div class="slide-content">
+                                <h3 class="slide-title">Entrepreneur's Corner</h3>
+                                <p class="slide-description">Building a business that aligns with your values.</p>
+                                <a href="#" class="slide-link">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="slider-btn slider-btn-next" id="sliderNext" aria-label="Next slide">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="slider-dots" id="sliderDots">
+                    <button class="dot active" data-slide="0" aria-label="Go to slide 1"></button>
+                    <button class="dot" data-slide="1" aria-label="Go to slide 2"></button>
+                    <button class="dot" data-slide="2" aria-label="Go to slide 3"></button>
+                </div>
+            </div>
+        </section>
 
-      <section aria-labelledby="health-head">
-        <h3 id="health-head">Health</h3>
-        <div class="card-grid" id="health"></div>
-      </section>
-    </section>
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">Live Unconventionally</h2>
+                    <p class="cta-description">
+                        Discover real stories, bold ideas, and timeless lessons on income, relationships, and community.
+                    </p>
+                    <a href="#newsletter" class="cta-button cta-button-secondary">Start Living Differently</a>
+                </div>
+            </div>
+        </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials">
-      <h2>Real Voices</h2>
-      <ul class="testimonial-container">
-        <li class="testimonial-card">
-          <figure>
-            <img src="https://images.unsplash.com/photo-1521191725298-2ce8daece44b?q=85&w=100&h=100&fit=crop" alt="Maya from London">
-            <figcaption>
-              “This blog has transformed my perspective on family life and relationships.”<br><strong>— Maya, London</strong>
-            </figcaption>
-          </figure>
-        </li>
+        <!-- Blog Posts Section -->
+        <section id="blog" class="blog-section">
+            <div class="container">
+                <h2 class="section-title">Blog Posts</h2>
+                
+                <!-- Inspiring Category -->
+                <div class="blog-category">
+                    <h3 class="category-title">Inspiring</h3>
+                    <div class="posts-grid">
+                        <article class="post-card">
+                            <div class="post-meta">
+                                <time datetime="2025-07-23" class="post-date">23 Jul 2025</time>
+                            </div>
+                            <h4 class="post-title">
+                                <a href="https://introagent.co.uk/the-unconventional-life/">The Ships I Didn't Board</a>
+                            </h4>
+                            <p class="post-excerpt">
+                                A deeply personal journey through signs, struggles, and moments of divine intervention...
+                            </p>
+                            <a href="https://introagent.co.uk/the-unconventional-life/" class="read-more">Read More</a>
+                        </article>
+                        
+                        <article class="post-card">
+                            <div class="post-meta">
+                                <time datetime="2025-07-10" class="post-date">10 Jul 2025</time>
+                            </div>
+                            <h4 class="post-title">
+                                <a href="https://introagent.co.uk/the-book-the-doctor-and-the-ayah/">The Book, the Doctor, and the Ayah</a>
+                            </h4>
+                            <p class="post-excerpt">
+                                A heart-touching reflection on compassion, healing, and bonds that shape our understanding of love.
+                            </p>
+                            <a href="https://introagent.co.uk/the-book-the-doctor-and-the-ayah/" class="read-more">Read More</a>
+                        </article>
+                    </div>
+                </div>
+                
+                <!-- Travel Category -->
+                <div class="blog-category">
+                    <h3 class="category-title">Travel</h3>
+                    <div class="posts-grid" id="travelPosts">
+                        <div class="empty-state">
+                            <p>Travel posts coming soon...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Finances Category -->
+                <div class="blog-category">
+                    <h3 class="category-title">Finances</h3>
+                    <div class="posts-grid" id="financePosts">
+                        <div class="empty-state">
+                            <p>Finance posts coming soon...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Health Category -->
+                <div class="blog-category">
+                    <h3 class="category-title">Health</h3>
+                    <div class="posts-grid" id="healthPosts">
+                        <div class="empty-state">
+                            <p>Health posts coming soon...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <li class="testimonial-card">
-          <figure>
-            <img src="https://images.unsplash.com/photo-1509695907282-a323f3c54b30?q=85&w=100&h=100&fit=crop" alt="Jack from Manchester">
-            <figcaption>
-              “Incredible insights on community and income. A must-read!”<br><strong>— Jack, Manchester</strong>
-            </figcaption>
-          </figure>
-        </li>
+        <!-- Testimonials Section -->
+        <section class="testimonials-section">
+            <div class="container">
+                <h2 class="section-title">Real Voices</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">
+                                "This blog has transformed my perspective on family life and relationships."
+                            </p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1521191725298-2ce8daece44b?q=85&w=100&h=100&fit=crop" 
+                                 alt="Maya from London" class="author-avatar" loading="lazy">
+                            <div class="author-info">
+                                <strong class="author-name">Maya</strong>
+                                <span class="author-location">London</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">
+                                "Incredible insights on community and income. A must-read!"
+                            </p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1509695907282-a323f3c54b30?q=85&w=100&h=100&fit=crop" 
+                                 alt="Jack from Manchester" class="author-avatar" loading="lazy">
+                            <div class="author-info">
+                                <strong class="author-name">Jack</strong>
+                                <span class="author-location">Manchester</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">
+                                "I love the practical advice and the positive energy."
+                            </p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=85&w=100&h=100&fit=crop" 
+                                 alt="Priya from Birmingham" class="author-avatar" loading="lazy">
+                            <div class="author-info">
+                                <strong class="author-name">Priya</strong>
+                                <span class="author-location">Birmingham</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <li class="testimonial-card">
-          <figure>
-            <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=85&w=100&h=100&fit=crop" alt="Priya from Birmingham">
-            <figcaption>
-              “I love the practical advice and the positive energy.”<br><strong>— Priya, Birmingham</strong>
-            </figcaption>
-          </figure>
-        </li>
-      </ul>
-    </section>
+        <!-- Newsletter Section -->
+        <section id="newsletter" class="newsletter-section">
+            <div class="container">
+                <div class="newsletter-content">
+                    <h2 class="newsletter-title">Get Unconventional Updates</h2>
+                    <p class="newsletter-description">
+                        Join our newsletter for new posts, behind-the-scenes, and monthly tips.
+                    </p>
+                    
+                    <form class="newsletter-form" id="newsletterForm">
+                        <div class="form-group">
+                            <label for="email" class="sr-only">Email address</label>
+                            <input type="email" id="email" name="email" class="form-input" 
+                                   placeholder="Enter your email" required>
+                            <button type="submit" class="form-submit">Subscribe</button>
+                        </div>
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="consent" name="consent" required>
+                            <label for="consent" class="checkbox-label">
+                                I consent to receiving emails from The Unconventional Life.
+                            </label>
+                        </div>
+                    </form>
+                    
+                    <p class="privacy-note">
+                        We respect your privacy. Unsubscribe anytime.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Newsletter -->
-    <section id="newsletter" class="newsletter">
-      <h2>Get Unconventional Updates</h2>
-      <p>Join our newsletter for new posts, behind-the-scenes, and monthly tips.</p>
+        <!-- FAQ Section -->
+        <section id="faq" class="faq-section">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            How often is the blog updated?
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>New blog posts and features are added every Thursday!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            Can I guest post or suggest topics?
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Absolutely! Use the contact form below or email us with your ideas.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            Is there a community for members?
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>We're planning a Discord and mailing list for our most dedicated readers. Stay tuned!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-      <form class="newsletter-form" action="#" method="POST">
-        <label for="email" class="sr-only">Email address</label>
-        <input id="email" name="email" type="email" placeholder="Enter your email" required>
-        <button class="btn btn-primary" type="submit">Subscribe</button>
-      </form>
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p class="copyright">&copy; <span id="currentYear">2025</span> The Unconventional Life</p>
+                </div>
+                <nav class="social-links" aria-label="Social media links">
+                    <a href="#" class="social-link" aria-label="Twitter">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        @UnconventionalLife
+                    </a>
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke="currentColor" stroke-width="2"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Instagram
+                    </a>
+                    <a href="#" class="social-link" aria-label="LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" stroke="currentColor" stroke-width="2"/>
+                            <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </footer>
 
-      <small id="privacy" aria-live="polite">We respect your privacy. Unsubscribe anytime.</small>
-    </section>
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
 
-  </main>
-
-  <!-- Footer -->
-  <footer class="site-footer" id="contact">
-    <p>&copy; 2025 The Unconventional Life.</p>
-    <nav class="social-links" aria-label="Social media">
-      <a href="#" aria-label="X / Twitter">@UnconventionalLife</a>
-      <a href="#" aria-label="Instagram">Instagram</a>
-      <a href="#" aria-label="LinkedIn">LinkedIn</a>
-    </nav>
-  </footer>
-
-  <!-- Loader JS ---------------------------------------------------------->
-  <script src="js/loader.js" defer></script>
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
 </body>
 </html>
