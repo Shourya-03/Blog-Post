@@ -83,3 +83,23 @@ newsletterForm.addEventListener('submit', (e) => {
 // Set current year in footer
 const currentYear = document.getElementById('currentYear');
 currentYear.textContent = new Date().getFullYear();
+
+// Light/Dark mode toggle
+const themeToggle = document.getElementById('toggleTheme');
+const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const savedTheme = localStorage.getItem('theme');
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-color-scheme', theme);
+  localStorage.setItem('theme', theme);
+  themeToggle.checked = theme === 'dark';
+}
+
+// On load
+applyTheme(savedTheme || (userPrefersDark ? 'dark' : 'light'));
+
+// Toggle handler
+themeToggle.addEventListener('change', () => {
+  const newTheme = themeToggle.checked ? 'dark' : 'light';
+  applyTheme(newTheme);
+});
