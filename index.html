@@ -4,177 +4,289 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Unconventional Life - Live Differently</title>
-    
+
+    <!-- Preload Critical Resources for Performance -->
+    <link rel="preload" href="css/main.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//images.unsplash.com">
+    <link rel="preconnect" href="//fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
+
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" 
+          content="default-src 'self'; 
+                   script-src 'self' 'unsafe-inline' 'unsafe-eval'; 
+                   style-src 'self' 'unsafe-inline' fonts.googleapis.com; 
+                   font-src fonts.googleapis.com fonts.gstatic.com; 
+                   img-src 'self' data: https: blob:; 
+                   connect-src 'self' https:;">
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Discover real stories, bold ideas, and timeless lessons on income, relationships, and community. Live unconventionally.">
-    <meta name="keywords" content="unconventional life, blog, lifestyle, inspiration, personal development">
+    <meta name="description" content="Discover real stories, bold ideas, and timeless lessons on income, relationships, and community. Live unconventionally with inspiring content and practical advice.">
+    <meta name="keywords" content="unconventional life, blog, lifestyle, inspiration, personal development, community, relationships, income, wellness, travel">
     <meta name="author" content="The Unconventional Life">
-    
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#218aad">
+    <meta name="color-scheme" content="light dark">
+
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="The Unconventional Life">
+    <meta property="og:title" content="The Unconventional Life - Live Differently">
     <meta property="og:description" content="Live unconventionally with inspiring stories and bold ideas">
     <meta property="og:image" content="img/hero-image.jpg">
     <meta property="og:url" content="https://unconventionallife.com">
     <meta property="og:type" content="website">
-    
+    <meta property="og:site_name" content="The Unconventional Life">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Unconventional Life">
+    <meta name="twitter:description" content="Live unconventionally with inspiring stories and bold ideas">
+    <meta name="twitter:image" content="img/hero-image.jpg">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="img/icons/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Unconventional Life">
+    <meta name="mobile-web-app-capable" content="yes">
+
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="img/favicon.svg">
-    
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+    <link rel="alternate icon" href="img/favicon.ico">
+
     <!-- CSS -->
     <link rel="stylesheet" href="css/main.css">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts with display=swap for performance -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "The Unconventional Life",
+        "url": "https://unconventionallife.com",
+        "description": "Discover real stories, bold ideas, and timeless lessons on income, relationships, and community",
+        "author": {
+            "@type": "Organization",
+            "@name": "The Unconventional Life"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "@name": "The Unconventional Life"
+        },
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://unconventionallife.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+
+    <!-- Blog structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "The Unconventional Life Blog",
+        "description": "Real stories, bold ideas, and timeless lessons",
+        "url": "https://unconventionallife.com/blog",
+        "mainEntityOfPage": "https://unconventionallife.com",
+        "author": {
+            "@type": "Organization",
+            "name": "The Unconventional Life"
+        }
+    }
+    </script>
 </head>
 <body>
-    <!-- Skip to main content link for accessibility -->
+    <!-- Skip Links for Accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    
+    <a href="#nav-menu" class="skip-link">Skip to navigation</a>
+    <a href="#footer" class="skip-link">Skip to footer</a>
+
+    <!-- PWA Install Banner -->
+    <div id="pwa-install-banner" class="pwa-banner hidden" role="dialog" aria-labelledby="pwa-title">
+        <div class="pwa-banner-content">
+            <h2 id="pwa-title">Install Unconventional Life</h2>
+            <p>Get quick access and offline reading!</p>
+            <div class="pwa-banner-buttons">
+                <button id="pwa-install-btn" class="btn btn--primary">Install</button>
+                <button id="pwa-dismiss-btn" class="btn btn--outline">Later</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Header -->
-    <header class="header">
+    <header class="header" role="banner">
         <div class="container">
-            <nav class="navbar">
+            <nav class="navbar" role="navigation" aria-label="Main navigation">
                 <div class="nav-brand">
-                    <a href="#" class="brand-link">
+                    <a href="#" class="brand-link" aria-label="Unconventional Life - Home">
                         <span class="brand-text">Unconventional Life</span>
                     </a>
-                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
-                    <span class="hamburger"></span>
-                    <span class="hamburger"></span>
-                    <span class="hamburger"></span>
+                </div>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
+                    <span class="hamburger" aria-hidden="true"></span>
+                    <span class="hamburger" aria-hidden="true"></span>
+                    <span class="hamburger" aria-hidden="true"></span>
                 </button>
 
-                <ul class="nav-menu" id="navMenu">
-                    <li class="nav-item">
-                        <a href="#blog" class="nav-link">Blog</a>
+                <ul class="nav-menu" id="navMenu" role="menubar">
+                    <li class="nav-item" role="none">
+                        <a href="#blog" class="nav-link" role="menuitem">Blog</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#newsletter" class="nav-link">Newsletter</a>
+                    <li class="nav-item" role="none">
+                        <a href="#newsletter" class="nav-link" role="menuitem">Newsletter</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#contact" class="nav-link">Contact</a>
+                    <li class="nav-item" role="none">
+                        <a href="#contact" class="nav-link" role="menuitem">Contact</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#faq" class="nav-link">FAQ</a>
+                    <li class="nav-item" role="none">
+                        <a href="#faq" class="nav-link" role="menuitem">FAQ</a>
                     </li>
-                    <div class="theme-toggle">
+                    <li class="nav-item theme-toggle" role="none">
                         <input type="checkbox" id="toggleTheme" aria-label="Toggle dark mode">
-                        <label for="toggleTheme">🌙</label>
-                    </div>
+                        <label for="toggleTheme">
+                            <span class="theme-icon" aria-hidden="true">🌙</span>
+                            <span class="sr-only">Toggle dark mode</span>
+                        </label>
+                    </li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main id="main-content">
+    <main id="main-content" role="main">
         <!-- Hero Section -->
-        <section class="hero">
+        <section class="hero" aria-labelledby="hero-title">
             <div class="hero-background">
-                <img src="img/hero-640.jpg" alt="Mountain landscape at sunset" class="hero-image" loading="eager">
+                <img src="img/hero-640.jpg" alt="Mountain landscape at sunset representing the unconventional journey" class="hero-image" loading="eager">
             </div>
             <div class="hero-content">
                 <div class="container">
-                    <h1 class="hero-title">
+                    <h1 id="hero-title" class="hero-title">
                         The <span class="highlight">Unconventional</span> Life
                     </h1>
                     <p class="hero-subtitle">
                         Who wants to be normal when you can be a Stranger? 
-                        <span class="danger-text">Danger!</span>
+                        <span class="danger-text" role="img" aria-label="Warning">⚠️ Danger!</span>
                     </p>
-                    <a href="#blog" class="cta-button">Explore Now</a>
+                    <a href="#blog" class="cta-button" role="button">Explore Now</a>
                 </div>
             </div>
         </section>
 
         <!-- Featured Posts Slider -->
-        <section class="featured-section">
+        <section class="featured-section" aria-labelledby="featured-title">
             <div class="container">
-                <h2 class="section-title">Featured this month</h2>
-                <div class="slider-wrapper">
-                    <button class="slider-btn slider-btn-prev" id="sliderPrev" aria-label="Previous slide">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <h2 id="featured-title" class="section-title">Featured this month</h2>
+                <div class="slider-wrapper" role="region" aria-label="Featured posts carousel">
+                    <button class="slider-btn slider-btn-prev" id="sliderPrev" aria-label="Previous slide" aria-controls="sliderContainer">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
-                    
-                    <div class="slider-container" id="sliderContainer">
-                        <div class="slide">
+
+                    <div class="slider-container" id="sliderContainer" role="tablist" aria-live="polite">
+                        <article class="slide" role="tabpanel" aria-label="Slide 1 of 3">
                             <div class="slide-image">
-                                <img src="img/feature-1.jpg" alt="Journey to the Untamed" loading="lazy">
+                                <img src="img/feature-1.jpg" alt="Journey to the Untamed - Mountain adventure scene" loading="lazy">
                             </div>
                             <div class="slide-content">
                                 <h3 class="slide-title">Journey to the Untamed</h3>
                                 <p class="slide-description">Exploring the wild unknown and finding yourself in the process.</p>
                                 <a href="#" class="slide-link">Read More</a>
                             </div>
-                        </div>
-                        
-                        <div class="slide">
+                        </article>
+
+                        <article class="slide" role="tabpanel" aria-label="Slide 2 of 3">
                             <div class="slide-image">
-                                <img src="img/feature-2.jpg" alt="Hidden Lessons in Loss" loading="lazy">
+                                <img src="img/feature-2.jpg" alt="Hidden Lessons in Loss - Contemplative forest path" loading="lazy">
                             </div>
                             <div class="slide-content">
                                 <h3 class="slide-title">Hidden Lessons in Loss</h3>
                                 <p class="slide-description">What grief teaches us about strength and resilience.</p>
                                 <a href="#" class="slide-link">Read More</a>
                             </div>
-                        </div>
-                        
-                        <div class="slide">
+                        </article>
+
+                        <article class="slide" role="tabpanel" aria-label="Slide 3 of 3">
                             <div class="slide-image">
-                                <img src="img/feature-3.jpg" alt="Entrepreneur's Corner" loading="lazy">
+                                <img src="img/feature-3.jpg" alt="Entrepreneur's Corner - Modern workspace setup" loading="lazy">
                             </div>
                             <div class="slide-content">
                                 <h3 class="slide-title">Entrepreneur's Corner</h3>
                                 <p class="slide-description">Building a business that aligns with your values.</p>
                                 <a href="#" class="slide-link">Read More</a>
                             </div>
-                        </div>
+                        </article>
                     </div>
-                    
-                    <button class="slider-btn slider-btn-next" id="sliderNext" aria-label="Next slide">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                    <button class="slider-btn slider-btn-next" id="sliderNext" aria-label="Next slide" aria-controls="sliderContainer">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
                 </div>
-                
-                <div class="slider-dots" id="sliderDots">
-                    <button class="dot active" data-slide="0" aria-label="Go to slide 1"></button>
-                    <button class="dot" data-slide="1" aria-label="Go to slide 2"></button>
-                    <button class="dot" data-slide="2" aria-label="Go to slide 3"></button>
+
+                <div class="slider-dots" id="sliderDots" role="tablist" aria-label="Slide navigation">
+                    <button class="dot active" data-slide="0" aria-label="Go to slide 1" role="tab" aria-selected="true"></button>
+                    <button class="dot" data-slide="1" aria-label="Go to slide 2" role="tab" aria-selected="false"></button>
+                    <button class="dot" data-slide="2" aria-label="Go to slide 3" role="tab" aria-selected="false"></button>
                 </div>
             </div>
         </section>
 
         <!-- Call to Action -->
-        <section class="cta-section">
+        <section class="cta-section" aria-labelledby="cta-title">
             <div class="container">
                 <div class="cta-content">
-                    <h2 class="cta-title">Live Unconventionally</h2>
+                    <h2 id="cta-title" class="cta-title">Live Unconventionally</h2>
                     <p class="cta-description">
                         Discover real stories, bold ideas, and timeless lessons on income, relationships, and community.
                     </p>
-                    <a href="#newsletter" class="cta-button cta-button-secondary">Start Living Differently</a>
+                    <a href="#newsletter" class="cta-button cta-button-secondary" role="button">Start Living Differently</a>
                 </div>
             </div>
         </section>
 
         <!-- Blog Posts Section -->
-        <section id="blog" class="blog-section">
+        <section id="blog" class="blog-section" aria-labelledby="blog-title">
             <div class="container">
-                <h2 class="section-title">Blog Posts</h2>
-                
+                <h2 id="blog-title" class="section-title">Blog Posts</h2>
+
+                <!-- Search and Filter -->
+                <div class="blog-controls">
+                    <div class="search-box">
+                        <label for="blog-search" class="sr-only">Search blog posts</label>
+                        <input type="search" id="blog-search" class="form-control" placeholder="Search posts..." aria-describedby="search-help">
+                        <span id="search-help" class="sr-only">Type to search through blog posts</span>
+                    </div>
+                    <div class="filter-controls">
+                        <label for="category-filter" class="sr-only">Filter by category</label>
+                        <select id="category-filter" class="form-control">
+                            <option value="all">All Categories</option>
+                            <option value="inspiring">Inspiring</option>
+                            <option value="travel">Travel</option>
+                            <option value="finances">Finances</option>
+                            <option value="health">Health</option>
+                        </select>
+                    </div>
+                </div>
+
                 <!-- Inspiring Category -->
-                <div class="blog-category">
+                <div class="blog-category" data-category="inspiring">
                     <h3 class="category-title">Inspiring</h3>
                     <div class="posts-grid">
-                        <article class="post-card">
+                        <article class="post-card" data-category="inspiring">
                             <div class="post-meta">
                                 <time datetime="2025-07-23" class="post-date">23 Jul 2025</time>
+                                <span class="reading-time">5 min read</span>
                             </div>
                             <h4 class="post-title">
                                 <a href="https://introagent.co.uk/the-unconventional-life/">The Ships I Didn't Board</a>
@@ -182,12 +294,17 @@
                             <p class="post-excerpt">
                                 A deeply personal journey through signs, struggles, and moments of divine intervention...
                             </p>
+                            <div class="post-tags">
+                                <span class="tag">Personal Growth</span>
+                                <span class="tag">Spirituality</span>
+                            </div>
                             <a href="https://introagent.co.uk/the-unconventional-life/" class="read-more">Read More</a>
                         </article>
-                        
-                        <article class="post-card">
+
+                        <article class="post-card" data-category="inspiring">
                             <div class="post-meta">
                                 <time datetime="2025-07-10" class="post-date">10 Jul 2025</time>
+                                <span class="reading-time">3 min read</span>
                             </div>
                             <h4 class="post-title">
                                 <a href="https://introagent.co.uk/the-book-the-doctor-and-the-ayah/">The Book, the Doctor, and the Ayah</a>
@@ -195,37 +312,47 @@
                             <p class="post-excerpt">
                                 A heart-touching reflection on compassion, healing, and bonds that shape our understanding of love.
                             </p>
+                            <div class="post-tags">
+                                <span class="tag">Relationships</span>
+                                <span class="tag">Healing</span>
+                            </div>
                             <a href="https://introagent.co.uk/the-book-the-doctor-and-the-ayah/" class="read-more">Read More</a>
                         </article>
                     </div>
                 </div>
-                
+
                 <!-- Travel Category -->
-                <div class="blog-category">
+                <div class="blog-category" data-category="travel">
                     <h3 class="category-title">Travel</h3>
                     <div class="posts-grid" id="travelPosts">
                         <div class="empty-state">
-                            <p>Travel posts coming soon...</p>
+                            <h4>Travel Adventures Coming Soon!</h4>
+                            <p>We're preparing amazing travel stories and guides. Check back soon for inspiring journeys and practical travel tips.</p>
+                            <button class="btn btn--outline" onclick="subscribeToUpdates()">Notify Me</button>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Finances Category -->
-                <div class="blog-category">
+                <div class="blog-category" data-category="finances">
                     <h3 class="category-title">Finances</h3>
                     <div class="posts-grid" id="financePosts">
                         <div class="empty-state">
-                            <p>Finance posts coming soon...</p>
+                            <h4>Financial Wisdom Loading...</h4>
+                            <p>Personal finance tips, investment strategies, and unconventional approaches to building wealth are in the works.</p>
+                            <button class="btn btn--outline" onclick="subscribeToUpdates()">Get Early Access</button>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Health Category -->
-                <div class="blog-category">
+                <div class="blog-category" data-category="health">
                     <h3 class="category-title">Health</h3>
                     <div class="posts-grid" id="healthPosts">
                         <div class="empty-state">
-                            <p>Health posts coming soon...</p>
+                            <h4>Wellness Content In Progress</h4>
+                            <p>Holistic health approaches, mental wellness strategies, and lifestyle optimization content coming your way.</p>
+                            <button class="btn btn--outline" onclick="subscribeToUpdates()">Stay Updated</button>
                         </div>
                     </div>
                 </div>
@@ -233,75 +360,77 @@
         </section>
 
         <!-- Testimonials Section -->
-        <section class="testimonials-section">
+        <section class="testimonials-section" aria-labelledby="testimonials-title">
             <div class="container">
-                <h2 class="section-title">Real Voices</h2>
+                <h2 id="testimonials-title" class="section-title">Real Voices</h2>
                 <div class="testimonials-grid">
-                    <div class="testimonial-card">
+                    <article class="testimonial-card">
                         <div class="testimonial-content">
-                            <p class="testimonial-text">
+                            <blockquote class="testimonial-text">
                                 "This blog has transformed my perspective on family life and relationships."
-                            </p>
+                            </blockquote>
                         </div>
                         <div class="testimonial-author">
-                            <img src="https://images.unsplash.com/photo-1521191725298-2ce8daece44b?q=85&w=100&h=100&fit=crop" 
-                                 alt="Maya from London" class="author-avatar" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1.521191725298e+12-2ce8daece44b?q=85&w=100&h=100&fit=crop" 
+                                 alt="Maya from London - testimonial author" class="author-avatar" loading="lazy">
                             <div class="author-info">
                                 <strong class="author-name">Maya</strong>
                                 <span class="author-location">London</span>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="testimonial-card">
+                    </article>
+
+                    <article class="testimonial-card">
                         <div class="testimonial-content">
-                            <p class="testimonial-text">
+                            <blockquote class="testimonial-text">
                                 "Incredible insights on community and income. A must-read!"
-                            </p>
+                            </blockquote>
                         </div>
                         <div class="testimonial-author">
-                            <img src="https://images.unsplash.com/photo-1509695907282-a323f3c54b30?q=85&w=100&h=100&fit=crop" 
-                                 alt="Jack from Manchester" class="author-avatar" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1.509695907282e+12-a323f3c54b30?q=85&w=100&h=100&fit=crop" 
+                                 alt="Jack from Manchester - testimonial author" class="author-avatar" loading="lazy">
                             <div class="author-info">
                                 <strong class="author-name">Jack</strong>
                                 <span class="author-location">Manchester</span>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="testimonial-card">
+                    </article>
+
+                    <article class="testimonial-card">
                         <div class="testimonial-content">
-                            <p class="testimonial-text">
+                            <blockquote class="testimonial-text">
                                 "I love the practical advice and the positive energy."
-                            </p>
+                            </blockquote>
                         </div>
                         <div class="testimonial-author">
-                            <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=85&w=100&h=100&fit=crop" 
-                                 alt="Priya from Birmingham" class="author-avatar" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1.511367461989e+12-f85a21fda167?q=85&w=100&h=100&fit=crop" 
+                                 alt="Priya from Birmingham - testimonial author" class="author-avatar" loading="lazy">
                             <div class="author-info">
                                 <strong class="author-name">Priya</strong>
                                 <span class="author-location">Birmingham</span>
                             </div>
                         </div>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
 
         <!-- Newsletter Section -->
-        <section id="newsletter" class="newsletter-section">
+        <section id="newsletter" class="newsletter-section" aria-labelledby="newsletter-title">
             <div class="container">
                 <div class="newsletter-content">
-                    <h2 class="newsletter-title">Get Unconventional Updates</h2>
+                    <h2 id="newsletter-title" class="newsletter-title">Get Unconventional Updates</h2>
                     <p class="newsletter-description">
                         Join our newsletter for new posts, behind-the-scenes, and monthly tips.
                     </p>
-                    
-                    <form class="newsletter-form" id="newsletterForm">
+
+                    <form class="newsletter-form" id="newsletterForm" novalidate>
                         <div class="form-group">
                             <label for="email" class="sr-only">Email address</label>
                             <input type="email" id="email" name="email" class="form-input" 
-                                   placeholder="Enter your email" required>
+                                   placeholder="Enter your email" required autocomplete="email"
+                                   aria-describedby="email-error">
+                            <div id="email-error" class="error-message" role="alert"></div>
                             <button type="submit" class="form-submit">Subscribe</button>
                         </div>
                         <div class="form-checkbox">
@@ -311,83 +440,105 @@
                             </label>
                         </div>
                     </form>
-                    
+
+                    <div class="newsletter-success hidden" id="newsletter-success" role="alert">
+                        <h3>Thank you for subscribing!</h3>
+                        <p>You'll receive our latest updates and exclusive content.</p>
+                    </div>
+
                     <p class="privacy-note">
-                        We respect your privacy. Unsubscribe anytime.
+                        We respect your privacy. Unsubscribe anytime. Read our <a href="#privacy">Privacy Policy</a>.
                     </p>
                 </div>
             </div>
         </section>
 
         <!-- FAQ Section -->
-        <section id="faq" class="faq-section">
+        <section id="faq" class="faq-section" aria-labelledby="faq-title">
             <div class="container">
-                <h2 class="section-title">Frequently Asked Questions</h2>
+                <h2 id="faq-title" class="section-title">Frequently Asked Questions</h2>
                 <div class="faq-list">
-                    <div class="faq-item">
-                        <button class="faq-question" aria-expanded="false">
+                    <article class="faq-item">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-1">
                             How often is the blog updated?
-                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </button>
-                        <div class="faq-answer">
-                            <p>New blog posts and features are added every Thursday!</p>
+                        <div class="faq-answer" id="faq-1" role="region" aria-labelledby="faq-question-1">
+                            <p>New blog posts and features are added every Thursday! We also share bonus content and behind-the-scenes updates through our newsletter.</p>
                         </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <button class="faq-question" aria-expanded="false">
+                    </article>
+
+                    <article class="faq-item">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-2">
                             Can I guest post or suggest topics?
-                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </button>
-                        <div class="faq-answer">
-                            <p>Absolutely! Use the contact form below or email us with your ideas.</p>
+                        <div class="faq-answer" id="faq-2" role="region" aria-labelledby="faq-question-2">
+                            <p>Absolutely! We love hearing from our readers. Use the contact form below or email us directly with your ideas, guest post proposals, or topic suggestions.</p>
                         </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <button class="faq-question" aria-expanded="false">
+                    </article>
+
+                    <article class="faq-item">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-3">
                             Is there a community for members?
-                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </button>
-                        <div class="faq-answer">
-                            <p>We're planning a Discord and mailing list for our most dedicated readers. Stay tuned!</p>
+                        <div class="faq-answer" id="faq-3" role="region" aria-labelledby="faq-question-3">
+                            <p>We're planning a Discord community and premium mailing list for our most dedicated readers. Stay tuned for exclusive discussions, early access to content, and direct interaction with contributors!</p>
                         </div>
-                    </div>
+                    </article>
+
+                    <article class="faq-item">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-4">
+                            Do you offer offline reading?
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer" id="faq-4" role="region" aria-labelledby="faq-question-4">
+                            <p>Yes! Our website works offline once you've visited it. You can install it as an app on your device for easy access and offline reading of cached content.</p>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer id="contact" class="footer">
+    <footer id="footer" class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-info">
-                    <p class="copyright">&copy; <span id="currentYear">2025</span> The Unconventional Life</p>
+                    <p class="copyright">&copy; <span id="currentYear">2025</span> The Unconventional Life. All rights reserved.</p>
+                    <nav class="footer-links">
+                        <a href="#privacy">Privacy Policy</a>
+                        <a href="#terms">Terms of Service</a>
+                        <a href="#sitemap">Sitemap</a>
+                    </nav>
                 </div>
                 <nav class="social-links" aria-label="Social media links">
-                    <a href="#" class="social-link" aria-label="Twitter">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <a href="#" class="social-link" aria-label="Follow us on Twitter">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                         @UnconventionalLife
                     </a>
-                    <a href="#" class="social-link" aria-label="Instagram">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <a href="#" class="social-link" aria-label="Follow us on Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/>
                             <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke="currentColor" stroke-width="2"/>
                             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                         </svg>
                         Instagram
                     </a>
-                    <a href="#" class="social-link" aria-label="LinkedIn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <a href="#" class="social-link" aria-label="Connect on LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" stroke="currentColor" stroke-width="2"/>
                             <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2"/>
                             <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2"/>
@@ -401,12 +552,30 @@
 
     <!-- Back to Top Button -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     </button>
 
+    <!-- Performance Monitor (for development) -->
+    <div id="performance-monitor" class="performance-monitor hidden"></div>
+
     <!-- JavaScript -->
-    <script src="js/main.js"></script>
+    <script src="js/main.js" defer></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>
