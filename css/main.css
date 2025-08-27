@@ -2278,3 +2278,4 @@ transition: transform var(--duration-normal) var(--ease-standard);
   --color-primary: #45B7D1;
   --color-primary-hover: #2196F3;
 }
+/* CSS Custom Properties for Dynamic Theming */
