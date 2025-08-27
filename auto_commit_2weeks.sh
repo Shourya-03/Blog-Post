@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Auto-Commit Script with Weekly Distribution
+# Auto-Commit Script for 2 Weeks (Full Mode)
 
 BRANCH="main"
 START_HOUR=8
 END_HOUR=23
-LOGFILE="auto_commit_weekly.log"
+LOGFILE="auto_commit_2weeks.log"
 HEARTBEAT_FILE="heartbeat.log"
 GENERIC_MESSAGES=(
   "Update code" "Fix minor bug" "Improve performance"
@@ -13,18 +13,8 @@ GENERIC_MESSAGES=(
 )
 PREFIXES=( "chore:" "fix:" "docs:" "refactor:" "perf:" "style:" "wip:" )
 
-# Active hours for commits
-ACTIVE_HOURS=($(seq $START_HOUR $END_HOUR))
-
-# -------- TEST MODE --------
-if [ "$1" = "test" ] || [ "$TEST_MODE" = "1" ]; then
-  MIN_SLEEP=5
-  EXTRA_SLEEP=10
-  echo "RUNNING IN TEST MODE" >> "$LOGFILE"
-else
-  MIN_SLEEP=1200    # 20 min
-  EXTRA_SLEEP=2400  # + 40 min
-fi
+MIN_SLEEP=1200    # 20 minutes
+EXTRA_SLEEP=2400  # + 40 minutes random offset
 
 pick_random_file() {
   mapfile -t _files < <(git ls-files 2>/dev/null)
@@ -37,76 +27,74 @@ pick_random_file() {
 
 touch "$LOGFILE"
 
-# -------- Weekly Commit Plan --------
-# Each week we generate a commit plan: how many commits each day
-WEEK_START=$(date -d "monday" +%Y-%m-%d 2>/dev/null || date +%Y-%m-%d)
-PLAN_FILE="/tmp/git_weekly_plan_${USER}_$WEEK_START"
+# -------- 2-Week Commit Plan --------
+PLAN_FILE="/tmp/git_2week_plan_${USER}.txt"
 
 if [ ! -f "$PLAN_FILE" ]; then
-    # Total weekly commits between 5–15
-    TOTAL_COMMITS=$((5 + RANDOM % 11))   # 5–15
-    # At least 1 quiet day in 2 weeks (we can randomize this later)
-    QUIET_DAY=$((RANDOM % 14))           # day index 0–13
-    # Generate daily commit counts
-    declare -a DAILY_COMMITS
+    TOTAL_COMMITS=$((5 + RANDOM % 16))   # 5–20 total
+    declare -a PLAN
+    # Pick 3 unique quiet days
+    QUIET_DAYS=()
+    while (( ${#QUIET_DAYS[@]} < 3 )); do
+        DAY=$((RANDOM % 14))
+        if [[ ! " ${QUIET_DAYS[@]} " =~ " $DAY " ]]; then
+            QUIET_DAYS+=($DAY)
+        fi
+    done
+    # Fill daily commits
     REMAIN=$TOTAL_COMMITS
-    for i in {0..6}; do
-        if (( i == QUIET_DAY )); then
-            DAILY_COMMITS[$i]=0
+    for i in {0..13}; do
+        if [[ " ${QUIET_DAYS[@]} " =~ " $i " ]]; then
+            PLAN[$i]=0
         else
-            # distribute remaining commits evenly
             if (( REMAIN > 0 )); then
-                # min 1, max remaining
                 MAX_PER_DAY=$(( (REMAIN>3)?3:REMAIN ))
-                DAILY_COMMITS[$i]=$((1 + RANDOM % MAX_PER_DAY))
-                REMAIN=$((REMAIN - DAILY_COMMITS[$i]))
+                PLAN[$i]=$((1 + RANDOM % MAX_PER_DAY))
+                REMAIN=$((REMAIN - PLAN[$i]))
             else
-                DAILY_COMMITS[$i]=0
+                PLAN[$i]=0
             fi
         fi
     done
-    # Save plan to file
-    printf "%s\n" "${DAILY_COMMITS[@]}" > "$PLAN_FILE"
-    echo "Weekly plan created: $(cat $PLAN_FILE)" >> "$LOGFILE"
+    # Save plan
+    printf "%s\n" "${PLAN[@]}" > "$PLAN_FILE"
+    echo "2-Week plan created: $(cat $PLAN_FILE)" >> "$LOGFILE"
 fi
 
-# Load weekly plan
-mapfile -t DAILY_COMMITS < "$PLAN_FILE"
-
-# Track daily progress
-TODAY_INDEX=$(date +%u)   # 1=Mon
-ALLOWED=${DAILY_COMMITS[$((TODAY_INDEX-1))]}
-DONE_FILE="/tmp/git_daily_done_${USER}_$(date +%Y-%m-%d)"
-if [ ! -f "$DONE_FILE" ]; then echo 0 > "$DONE_FILE"; fi
-DONE=$(cat "$DONE_FILE")
+# Load plan
+mapfile -t PLAN < "$PLAN_FILE"
 
 # -------- Main Loop --------
 while true; do
+    TODAY_INDEX=$(( $(date +%j) % 14 )) # 0–13 index for 2-week plan
+    ALLOWED=${PLAN[$TODAY_INDEX]}
+    DONE_FILE="/tmp/git_done_${USER}_$(date +%Y-%m-%d)"
+    if [ ! -f "$DONE_FILE" ]; then echo 0 > "$DONE_FILE"; fi
+    DONE=$(cat "$DONE_FILE")
+    
     HOUR=$((10#$(TZ="Asia/Kolkata" date +%H)))
     TIME_NOW=$(TZ="Asia/Kolkata" date +"%Y-%m-%d %H:%M:%S")
     TODAY=$(date +%Y-%m-%d)
-
+    
     if (( HOUR < START_HOUR || HOUR > END_HOUR )); then
         echo "[$TIME_NOW] Outside active hours. Sleeping 30 min." >> "$LOGFILE"
         sleep 1800
         continue
     fi
-
+    
     if (( DONE >= ALLOWED )); then
         echo "[$TIME_NOW] Reached today's allowed commits ($DONE/$ALLOWED)." >> "$LOGFILE"
     else
-        # pick a file or heartbeat
         CHANGES=$(git status --porcelain 2>/dev/null)
         if [ -n "$CHANGES" ]; then
             git add -A .
             FILE=$(pick_random_file)
         else
-            echo "heartbeat: $TIME_NOW $RANDOM" > "$HEARTBEAT_FILE"
+            echo "heartbeat: $TODAY $RANDOM" > "$HEARTBEAT_FILE"
             git add "$HEARTBEAT_FILE"
             FILE="$HEARTBEAT_FILE"
         fi
 
-        # Compose commit message
         MSG="${GENERIC_MESSAGES[$RANDOM % ${#GENERIC_MESSAGES[@]}]}"
         if [ -n "$FILE" ] && (( RANDOM % 2 == 0 )); then
             MSG="$MSG in $FILE"
@@ -117,7 +105,6 @@ while true; do
         fi
         FINAL_MSG="$MSG ($TIME_NOW IST)"
 
-        # Commit & push
         if git diff --cached --quiet; then
             echo "[$TIME_NOW] Nothing staged — skipping commit." >> "$LOGFILE"
         else
@@ -130,10 +117,10 @@ while true; do
         fi
     fi
 
-    # Sleep randomized interval (evenly spread across day)
+    # Spread commits evenly across active hours
     REMAIN_HOURS=$((END_HOUR - START_HOUR + 1))
     if (( ALLOWED > 0 )); then
-        SLEEP_TIME=$(( (REMAIN_HOURS*3600 / ALLOWED) + RANDOM % 600 ))  # ~even spread + randomness
+        SLEEP_TIME=$(( (REMAIN_HOURS*3600 / ALLOWED) + RANDOM % 600 ))
     else
         SLEEP_TIME=$((MIN_SLEEP + RANDOM % EXTRA_SLEEP))
     fi
