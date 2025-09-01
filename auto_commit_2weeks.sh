@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Auto-Commit Script for 2 Weeks (Full Mode)
+# Auto-Commit Script for 2 Weeks (Full Mode) — IST + First-Day-Start Fix
 
 BRANCH="main"
 START_HOUR=8
@@ -29,33 +29,64 @@ touch "$LOGFILE"
 
 # -------- 2-Week Commit Plan --------
 PLAN_FILE="/tmp/git_2week_plan_${USER}.txt"
+PLAN_START_FILE="/tmp/git_2week_start_${USER}.txt"
+
+# Record the first day of plan
+if [ ! -f "$PLAN_START_FILE" ]; then
+    TZ="Asia/Kolkata" date +%j > "$PLAN_START_FILE"
+fi
+PLAN_START=$(cat "$PLAN_START_FILE")
 
 if [ ! -f "$PLAN_FILE" ]; then
-    TOTAL_COMMITS=$((5 + RANDOM % 16))   # 5–20 total commits
+    TOTAL_COMMITS=$((15 + RANDOM % 16))   # 15–30 total commits
     declare -a PLAN
     QUIET_DAYS=()
+
+    # pick 3 non-consecutive quiet days
     while (( ${#QUIET_DAYS[@]} < 3 )); do
         DAY=$((RANDOM % 14))
         if [[ ! " ${QUIET_DAYS[@]} " =~ " $DAY " ]]; then
-            QUIET_DAYS+=($DAY)
+            SKIP=false
+            for q in "${QUIET_DAYS[@]}"; do
+                if (( DAY == q || DAY == q-1 || DAY == q+1 )); then
+                    SKIP=true
+                    break
+                fi
+            done
+            if [ "$SKIP" = false ]; then
+                QUIET_DAYS+=($DAY)
+            fi
         fi
     done
+
     REMAIN=$TOTAL_COMMITS
+    ACTIVE_DAYS=$((14 - ${#QUIET_DAYS[@]}))
+    MIN_REQUIRED=$ACTIVE_DAYS
+    REMAIN=$((REMAIN - MIN_REQUIRED))
+
+    # Assign at least 1 commit per non-quiet day
     for i in {0..13}; do
         if [[ " ${QUIET_DAYS[@]} " =~ " $i " ]]; then
             PLAN[$i]=0
         else
-            if (( REMAIN > 0 )); then
-                MAX_PER_DAY=$(( (REMAIN>3)?3:REMAIN ))
-                PLAN[$i]=$((1 + RANDOM % MAX_PER_DAY))
-                REMAIN=$((REMAIN - PLAN[$i]))
-            else
-                PLAN[$i]=0
+            PLAN[$i]=1
+        fi
+    done
+
+    # Distribute remaining commits randomly
+    while (( REMAIN > 0 )); do
+        DAY=$((RANDOM % 14))
+        if [[ ! " ${QUIET_DAYS[@]} " =~ " $DAY " ]]; then
+            if (( PLAN[$DAY] < 4 )); then
+                PLAN[$DAY]=$((PLAN[$DAY] + 1))
+                REMAIN=$((REMAIN - 1))
             fi
         fi
     done
+
     printf "%s\n" "${PLAN[@]}" > "$PLAN_FILE"
     echo "2-Week plan created: $(cat $PLAN_FILE)" >> "$LOGFILE"
+    echo "Quiet days: ${QUIET_DAYS[*]}" >> "$LOGFILE"
 fi
 
 # Load plan
@@ -63,35 +94,42 @@ mapfile -t PLAN < "$PLAN_FILE"
 
 # -------- Main Loop --------
 while true; do
-    TODAY_INDEX=$(( $(date +%j) % 14 )) # index 0–13
+    # ----- IST-based date/time -----
+    TODAY=$(TZ="Asia/Kolkata" date +%Y-%m-%d)
+    TODAY_DOY=$(TZ="Asia/Kolkata" date +%j)
+    TODAY_INDEX=$(( ( (TODAY_DOY - PLAN_START + 14) % 14 ) ))
     ALLOWED=${PLAN[$TODAY_INDEX]}
-    DONE_FILE="/tmp/git_done_${USER}_$(date +%Y-%m-%d)"
+    DONE_FILE="/tmp/git_done_${USER}_${TODAY}"
     if [ ! -f "$DONE_FILE" ]; then echo 0 > "$DONE_FILE"; fi
     DONE=$(cat "$DONE_FILE")
 
     HOUR=$((10#$(TZ="Asia/Kolkata" date +%H)))
     TIME_NOW=$(TZ="Asia/Kolkata" date +"%Y-%m-%d %H:%M:%S")
-    TODAY=$(date +%Y-%m-%d)
 
+    # ----- Outside active hours -----
     if (( HOUR < START_HOUR || HOUR > END_HOUR )); then
         echo "[$TIME_NOW] Outside active hours. Sleeping 30 min." >> "$LOGFILE"
         sleep 1800
         continue
     fi
 
-    if (( DONE >= ALLOWED )); then
-        # All commits done today — sleep until 8 AM next day
-        NOW=$(date +%s)
-        TOMORROW=$(date -d "tomorrow 08:00" +%s)
+    # ----- Quiet day or all commits done -----
+    if (( ALLOWED == 0 )); then
+        echo "[$TIME_NOW] Quiet day — sleeping 1 hour." >> "$LOGFILE"
+        SLEEP_TIME=3600
+    elif (( DONE >= ALLOWED )); then
+        NOW=$(TZ="Asia/Kolkata" date +%s)
+        TOMORROW=$(TZ="Asia/Kolkata" date -d "tomorrow 08:00" +%s)
         SLEEP_TIME=$(( TOMORROW - NOW ))
         echo "[$TIME_NOW] Reached today's allowed commits ($DONE/$ALLOWED). Sleeping until 8 AM tomorrow (~$SLEEP_TIME sec)." >> "$LOGFILE"
     else
+        # ----- Do commit -----
         CHANGES=$(git status --porcelain 2>/dev/null)
         if [ -n "$CHANGES" ]; then
             git add -A .
             FILE=$(pick_random_file)
         else
-            echo "heartbeat: $TODAY $RANDOM" > "$HEARTBEAT_FILE"
+            echo "heartbeat: $TIME_NOW $RANDOM" > "$HEARTBEAT_FILE"
             git add "$HEARTBEAT_FILE"
             FILE="$HEARTBEAT_FILE"
         fi
@@ -117,14 +155,14 @@ while true; do
             echo "[$TIME_NOW] Done $DONE / $ALLOWED for $TODAY" >> "$LOGFILE"
         fi
 
-        # Spread remaining commits evenly across active hours
+        # ----- Spread remaining commits evenly -----
         REMAIN_HOURS=$((END_HOUR - HOUR + 1))
         REMAIN_COMMITS=$(( ALLOWED - DONE ))
         if (( REMAIN_COMMITS > 0 )); then
             SLEEP_TIME=$(( (REMAIN_HOURS*3600 / REMAIN_COMMITS) + RANDOM % 600 ))
         else
-            NOW=$(date +%s)
-            TOMORROW=$(date -d "tomorrow 08:00" +%s)
+            NOW=$(TZ="Asia/Kolkata" date +%s)
+            TOMORROW=$(TZ="Asia/Kolkata" date -d "tomorrow 08:00" +%s)
             SLEEP_TIME=$(( TOMORROW - NOW ))
             echo "[$TIME_NOW] All commits done. Sleeping until 8 AM tomorrow (~$SLEEP_TIME sec)." >> "$LOGFILE"
         fi
