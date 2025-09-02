@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Auto-Commit Script for 2 Weeks (Full Mode) — IST + First-Day-Start Fix
+# Auto-Commit Script for 2 Weeks (Full Mode) — System-Time-Aligned
 
 BRANCH="main"
 START_HOUR=8
@@ -33,7 +33,7 @@ PLAN_START_FILE="/tmp/git_2week_start_${USER}.txt"
 
 # Record the first day of plan
 if [ ! -f "$PLAN_START_FILE" ]; then
-    TZ="Asia/Kolkata" date +%j > "$PLAN_START_FILE"
+    date +%j > "$PLAN_START_FILE"  # store day-of-year of first run
 fi
 PLAN_START=$(cat "$PLAN_START_FILE")
 
@@ -94,17 +94,17 @@ mapfile -t PLAN < "$PLAN_FILE"
 
 # -------- Main Loop --------
 while true; do
-    # ----- IST-based date/time -----
-    TODAY=$(TZ="Asia/Kolkata" date +%Y-%m-%d)
-    TODAY_DOY=$(TZ="Asia/Kolkata" date +%j)
+    # ----- System local time -----
+    TODAY=$(date +%Y-%m-%d)
+    TODAY_DOY=$(date +%j)
     TODAY_INDEX=$(( ( (TODAY_DOY - PLAN_START + 14) % 14 ) ))
     ALLOWED=${PLAN[$TODAY_INDEX]}
     DONE_FILE="/tmp/git_done_${USER}_${TODAY}"
     if [ ! -f "$DONE_FILE" ]; then echo 0 > "$DONE_FILE"; fi
     DONE=$(cat "$DONE_FILE")
 
-    HOUR=$((10#$(TZ="Asia/Kolkata" date +%H)))
-    TIME_NOW=$(TZ="Asia/Kolkata" date +"%Y-%m-%d %H:%M:%S")
+    HOUR=$(date +%H)
+    TIME_NOW=$(date +"%Y-%m-%d %H:%M:%S")
 
     # ----- Outside active hours -----
     if (( HOUR < START_HOUR || HOUR > END_HOUR )); then
@@ -118,9 +118,12 @@ while true; do
         echo "[$TIME_NOW] Quiet day — sleeping 1 hour." >> "$LOGFILE"
         SLEEP_TIME=3600
     elif (( DONE >= ALLOWED )); then
-        NOW=$(TZ="Asia/Kolkata" date +%s)
-        TOMORROW=$(TZ="Asia/Kolkata" date -d "tomorrow 08:00" +%s)
-        SLEEP_TIME=$(( TOMORROW - NOW ))
+        # sleep until 8 AM next day
+        HOUR_NOW=$(date +%H)
+        MIN_NOW=$(date +%M)
+        SEC_NOW=$(date +%S)
+        SECONDS_NOW=$(( HOUR_NOW*3600 + MIN_NOW*60 + SEC_NOW ))
+        SLEEP_TIME=$(( (24*3600 - SECONDS_NOW) + 8*3600 ))
         echo "[$TIME_NOW] Reached today's allowed commits ($DONE/$ALLOWED). Sleeping until 8 AM tomorrow (~$SLEEP_TIME sec)." >> "$LOGFILE"
     else
         # ----- Do commit -----
@@ -142,7 +145,7 @@ while true; do
             PREF=${PREFIXES[$RANDOM % ${#PREFIXES[@]}]}
             MSG="$PREF $MSG"
         fi
-        FINAL_MSG="$MSG ($TIME_NOW IST)"
+        FINAL_MSG="$MSG ($TIME_NOW)"
 
         if git diff --cached --quiet; then
             echo "[$TIME_NOW] Nothing staged — skipping commit." >> "$LOGFILE"
@@ -161,9 +164,11 @@ while true; do
         if (( REMAIN_COMMITS > 0 )); then
             SLEEP_TIME=$(( (REMAIN_HOURS*3600 / REMAIN_COMMITS) + RANDOM % 600 ))
         else
-            NOW=$(TZ="Asia/Kolkata" date +%s)
-            TOMORROW=$(TZ="Asia/Kolkata" date -d "tomorrow 08:00" +%s)
-            SLEEP_TIME=$(( TOMORROW - NOW ))
+            HOUR_NOW=$(date +%H)
+            MIN_NOW=$(date +%M)
+            SEC_NOW=$(date +%S)
+            SECONDS_NOW=$(( HOUR_NOW*3600 + MIN_NOW*60 + SEC_NOW ))
+            SLEEP_TIME=$(( (24*3600 - SECONDS_NOW) + 8*3600 ))
             echo "[$TIME_NOW] All commits done. Sleeping until 8 AM tomorrow (~$SLEEP_TIME sec)." >> "$LOGFILE"
         fi
     fi
