@@ -147,29 +147,41 @@ while true; do
         fi
         FINAL_MSG="$MSG ($TIME_NOW)"
 
+        PUSH_FAILED=false
         if git diff --cached --quiet; then
             echo "[$TIME_NOW] Nothing staged — skipping commit." >> "$LOGFILE"
         else
             echo "[$TIME_NOW] COMMIT: $FINAL_MSG" >> "$LOGFILE"
             git commit -m "$FINAL_MSG" >> "$LOGFILE" 2>&1 || echo "[$TIME_NOW] commit failed" >> "$LOGFILE"
-            git push origin "$BRANCH" >> "$LOGFILE" 2>&1 || echo "[$TIME_NOW] push failed" >> "$LOGFILE"
-            DONE=$((DONE + 1))
-            echo "$DONE" > "$DONE_FILE"
-            echo "[$TIME_NOW] Done $DONE / $ALLOWED for $TODAY" >> "$LOGFILE"
+
+            if git push origin "$BRANCH" >> "$LOGFILE" 2>&1; then
+                DONE=$((DONE + 1))
+                echo "$DONE" > "$DONE_FILE"
+                echo "[$TIME_NOW] Done $DONE / $ALLOWED for $TODAY" >> "$LOGFILE"
+            else
+                echo "[$TIME_NOW] push failed" >> "$LOGFILE"
+                PUSH_FAILED=true
+            fi
         fi
 
         # ----- Spread remaining commits evenly -----
-        REMAIN_HOURS=$((END_HOUR - HOUR + 1))
-        REMAIN_COMMITS=$(( ALLOWED - DONE ))
-        if (( REMAIN_COMMITS > 0 )); then
-            SLEEP_TIME=$(( (REMAIN_HOURS*3600 / REMAIN_COMMITS) + RANDOM % 600 ))
+        if [ "$PUSH_FAILED" = true ]; then
+            # Retry failed push in 2–3 hours
+            SLEEP_TIME=$(( 7200 + RANDOM % 3600 ))
+            echo "[$TIME_NOW] Push failed — retrying in ~${SLEEP_TIME}s (2–3h)." >> "$LOGFILE"
         else
-            HOUR_NOW=$(date +%H)
-            MIN_NOW=$(date +%M)
-            SEC_NOW=$(date +%S)
-            SECONDS_NOW=$(( HOUR_NOW*3600 + MIN_NOW*60 + SEC_NOW ))
-            SLEEP_TIME=$(( (24*3600 - SECONDS_NOW) + 8*3600 ))
-            echo "[$TIME_NOW] All commits done. Sleeping until 8 AM tomorrow (~$SLEEP_TIME sec)." >> "$LOGFILE"
+            REMAIN_HOURS=$((END_HOUR - HOUR + 1))
+            REMAIN_COMMITS=$(( ALLOWED - DONE ))
+            if (( REMAIN_COMMITS > 0 )); then
+                SLEEP_TIME=$(( (REMAIN_HOURS*3600 / REMAIN_COMMITS) + RANDOM % 600 ))
+            else
+                HOUR_NOW=$(date +%H)
+                MIN_NOW=$(date +%M)
+                SEC_NOW=$(date +%S)
+                SECONDS_NOW=$(( HOUR_NOW*3600 + MIN_NOW*60 + SEC_NOW ))
+                SLEEP_TIME=$(( (24*3600 - SECONDS_NOW) + 8*3600 ))
+                echo "[$TIME_NOW] All commits done. Sleeping until 8 AM tomorrow (~$SLEEP_TIME sec)." >> "$LOGFILE"
+            fi
         fi
     fi
 
