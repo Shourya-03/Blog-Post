@@ -166,9 +166,9 @@ while true; do
 
         # ----- Spread remaining commits evenly -----
         if [ "$PUSH_FAILED" = true ]; then
-            # Retry failed push in 2–3 hours
-            SLEEP_TIME=$(( 7200 + RANDOM % 3600 ))
-            echo "[$TIME_NOW] Push failed — retrying in ~${SLEEP_TIME}s (2–3h)." >> "$LOGFILE"
+            # Retry failed push in 15 minutes
+            SLEEP_TIME=$(( 900 + RANDOM % 60 ))
+            echo "[$TIME_NOW] Push failed — retrying in ~${SLEEP_TIME}s (15m)." >> "$LOGFILE"
         else
             REMAIN_HOURS=$((END_HOUR - HOUR + 1))
             REMAIN_COMMITS=$(( ALLOWED - DONE ))
