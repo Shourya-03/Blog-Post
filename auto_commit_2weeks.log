@@ -338,3 +338,10 @@ To https://github.com/Shourya-03/Blog-Post.git
 2
 1
 Quiet days: 1 3 11
+[2025-09-21 18:09:09] COMMIT: Code cleanup in service-worker.js (2025-09-21 18:09:09)
+[main a04a2dd] Code cleanup in service-worker.js (2025-09-21 18:09:09)
+ 1 file changed, 23 insertions(+)
+fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': schannel: SEC_E_UNTRUSTED_ROOT (0x80090325) - The certificate chain was issued by an authority that is not trusted.
+[2025-09-21 18:09:09] push failed
+[2025-09-21 18:09:09] Push failed — retrying in ~902s (15m).
+[2025-09-21 18:09:09] Sleeping 902 sec
