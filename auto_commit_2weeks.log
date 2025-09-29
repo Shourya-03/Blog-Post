@@ -404,3 +404,10 @@ fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': Could no
 [2025-09-29 13:49:19] push failed
 [2025-09-29 13:49:19] Push failed — retrying in ~912s (15m).
 [2025-09-29 13:49:19] Sleeping 912 sec
+[2025-09-29 13:49:48] COMMIT: docs: Fix minor bug in img/hero-1920.jpg (2025-09-29 13:49:48)
+[main d27790f] docs: Fix minor bug in img/hero-1920.jpg (2025-09-29 13:49:48)
+ 1 file changed, 7 insertions(+)
+fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': Could not resolve host: github.com
+[2025-09-29 13:49:48] push failed
+[2025-09-29 13:49:48] Push failed — retrying in ~906s (15m).
+[2025-09-29 13:49:48] Sleeping 906 sec
