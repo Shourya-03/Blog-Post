@@ -756,3 +756,10 @@ fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': schannel
 [2025-10-07 11:47:48] push failed
 [2025-10-07 11:47:48] Push failed — retrying in ~936s (15m).
 [2025-10-07 11:47:48] Sleeping 936 sec
+[2025-10-07 11:49:47] COMMIT: Fix typo in img/hero@1280.webp (2025-10-07 11:49:47)
+[main 6667e50] Fix typo in img/hero@1280.webp (2025-10-07 11:49:47)
+ 1 file changed, 7 insertions(+)
+fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': schannel: SEC_E_UNTRUSTED_ROOT (0x80090325) - The certificate chain was issued by an authority that is not trusted.
+[2025-10-07 11:49:47] push failed
+[2025-10-07 11:49:47] Push failed — retrying in ~920s (15m).
+[2025-10-07 11:49:47] Sleeping 920 sec
