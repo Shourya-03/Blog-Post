@@ -1153,3 +1153,10 @@ fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': Could no
 [2025-10-07 19:54:40] push failed
 [2025-10-07 19:54:40] Push failed — retrying in ~935s (15m).
 [2025-10-07 19:54:40] Sleeping 935 sec
+[2025-10-07 19:56:42] COMMIT: Fix minor bug in nohup.out (2025-10-07 19:56:42)
+[main b23eee9] Fix minor bug in nohup.out (2025-10-07 19:56:42)
+ 1 file changed, 7 insertions(+)
+fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': schannel: SEC_E_UNTRUSTED_ROOT (0x80090325) - The certificate chain was issued by an authority that is not trusted.
+[2025-10-07 19:56:42] push failed
+[2025-10-07 19:56:42] Push failed — retrying in ~921s (15m).
+[2025-10-07 19:56:42] Sleeping 921 sec
