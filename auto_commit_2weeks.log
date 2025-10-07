@@ -617,3 +617,23 @@ fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': schannel
 [2025-10-07 10:48:05] push failed
 [2025-10-07 10:48:05] Push failed — retrying in ~949s (15m).
 [2025-10-07 10:48:05] Sleeping 949 sec
+[2025-10-07 10:48:06] COMMIT: style: Small changes in img/hero@1920.webp (2025-10-07 10:48:06)
+[main 7b9af96] style: Small changes in img/hero@1920.webp (2025-10-07 10:48:06)
+On branch main
+Your branch is ahead of 'origin/main' by 13 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   auto_commit_2weeks.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': schannel: SEC_E_UNTRUSTED_ROOT (0x80090325) - The certificate chain was issued by an authority that is not trusted.
+y an authority that is not trusted.
+[2025-10-07 10:48:06] push failed
+[2025-10-07 10:48:06] push failed
+[2025-10-07 10:48:06] Push failed — retrying in ~933s (15m).
+[2025-10-07 10:48:06] Push failed — retrying in ~909s (15m).
+[2025-10-07 10:48:06] Sleeping 933 sec
+[2025-10-07 10:48:06] Sleeping 909 sec
