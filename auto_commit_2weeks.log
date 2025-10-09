@@ -1552,4 +1552,23 @@ are terminated then try again. If it still fails, a git process
 may have crashed in this repository earlier:
 remove the file manually to continue.
 [2025-10-09 21:56:57] commit failed
-[2025-10-09 21:56:57] COMMIT: Update documentation in img/feature-3.jpg (2025-10-09 21:56:57)
+To https://github.com/Shourya-03/Blog-Post.git
+ ! [remote rejected] main -> main (cannot lock To https://github.com/Shourya-03/Blog-Post.git
+ ! [remote rejected] main -> main (cannot lock ref 'refs/heads/maTo https://github.com/Shourya-03/Blog-Post.git
+   bbacf71..338ba39  main -> main
+83c7a18856cb50e2b8495c02)
+error: failed to push some refs to 'https://github.com/Shourya-03/Blog-Post.git'
+hourya-03/Blog-Post.git
+ ! [remote rejected] main -> main (cannot lock ref 'refs/heads/main': is at 2f49a5a96a98e1514aa44247c32b500f44b7ea46 but expected bbacf71cf7df62a483c7a18856cb50e2b8495c02)
+error: failed to push some refs to 'https://github.com/Shourya-03/Blog-Post.git'
+[2025-10-09 21:56:57] push failed
+[2025-10-09 21:56:57] push failed
+[2025-10-09 21:56:57] Push failed — retrying in ~916s (15m).
+[2025-10-09 21:56:57] Push failed — retrying in ~931s (15m).
+[2025-10-09 21:56:57] Sleeping 916 sec
+[2025-10-09 21:56:57] Sleeping 931 sec
+[2025-10-09 21:56:57] push failed
+[2025-10-09 21:56:57] Push failed — retrying in ~952s (15m).
+[2025-10-09 21:56:57] Sleeping 952 sec
+[2025-10-09 21:56:57] Done 1 / 2 for 2025-10-09
+[2025-10-09 21:56:57] Sleeping 11248 sec
