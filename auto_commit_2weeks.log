@@ -1612,3 +1612,13 @@ To https://github.com/Shourya-03/Blog-Post.git
 [2025-10-15 15:00:28] COMMIT: style: Fix typo (2025-10-15 15:00:28)
 [main 950b243] style: Fix typo (2025-10-15 15:00:28)
  1 file changed, 7 insertions(+)
+To https://github.com/Shourya-03/Blog-Post.git
+   b66dcf6..950b243  main -> main
+Small changes (2025-10-15 15:00:30)
+ 1 file changed, 3 insertions(+)
+To https://github.com/Shourya-03/Blog-Post.git
+ ! [remote rejected] main -> main (cannot lock ref 'refs/heads/main': is at d9eee7a4a10cd7f1ba27caf0f58212f22bf8b3f3 but expected b66dcf66ee8e6c449e1adb48a9fecefad2851c40)
+error: failed to push some refs to 'https://github.com/Shourya-03/Blog-Post.git'
+[2025-10-15 15:00:30] push failed
+[2025-10-15 15:00:30] Push failed — retrying in ~913s (15m).
+[2025-10-15 15:00:30] Sleeping 913 sec
