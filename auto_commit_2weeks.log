@@ -2032,3 +2032,10 @@ To https://github.com/Shourya-03/Blog-Post.git
    2b46933..78c189b  main -> main
 [2025-11-13 21:45:41] Done 1 / 4 for 2025-11-13
 [2025-11-13 21:45:41] Sleeping 3803 sec
+[2025-11-14 13:44:15] COMMIT: fix: Fix minor bug in offline.html (2025-11-14 13:44:15)
+[main acde9d2] fix: Fix minor bug in offline.html (2025-11-14 13:44:15)
+ 1 file changed, 7 insertions(+)
+To https://github.com/Shourya-03/Blog-Post.git
+   78c189b..acde9d2  main -> main
+[2025-11-14 13:44:15] Done 1 / 2 for 2025-11-14
+[2025-11-14 13:44:15] Sleeping 39643 sec
