@@ -2675,3 +2675,10 @@ fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': Could no
 [2025-11-18 20:34:51] push failed
 [2025-11-18 20:34:51] Push failed — retrying in ~954s (15m).
 [2025-11-18 20:34:51] Sleeping 954 sec
+[2025-11-18 20:36:44] COMMIT: Improve performance in offline.html (2025-11-18 20:36:44)
+[main 9abf11d] Improve performance in offline.html (2025-11-18 20:36:44)
+ 1 file changed, 7 insertions(+)
+fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': Could not resolve host: github.com
+[2025-11-18 20:36:44] push failed
+[2025-11-18 20:36:44] Push failed — retrying in ~922s (15m).
+[2025-11-18 20:36:44] Sleeping 922 sec
