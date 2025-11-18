@@ -2770,3 +2770,10 @@ fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': Could no
 [2025-11-18 22:09:00] push failed
 [2025-11-18 22:09:00] Push failed — retrying in ~936s (15m).
 [2025-11-18 22:09:00] Sleeping 936 sec
+[2025-11-18 22:24:06] COMMIT: wip: Small changes in img/hero@1280.webp (2025-11-18 22:24:06)
+[main 1dbaef9] wip: Small changes in img/hero@1280.webp (2025-11-18 22:24:06)
+ 1 file changed, 7 insertions(+)
+fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': Could not resolve host: github.com
+[2025-11-18 22:24:06] push failed
+[2025-11-18 22:24:06] Push failed — retrying in ~923s (15m).
+[2025-11-18 22:24:06] Sleeping 923 sec
