@@ -2545,3 +2545,10 @@ fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': Could no
 [2025-11-18 15:49:18] push failed
 [2025-11-18 15:49:18] Push failed — retrying in ~938s (15m).
 [2025-11-18 15:49:18] Sleeping 938 sec
+[2025-11-18 15:51:59] COMMIT: Fix typo in img/hero@1280.webp (2025-11-18 15:51:59)
+[main 174bfd4] Fix typo in img/hero@1280.webp (2025-11-18 15:51:59)
+ 1 file changed, 7 insertions(+)
+fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': Could not resolve host: github.com
+[2025-11-18 15:51:59] push failed
+[2025-11-18 15:51:59] Push failed — retrying in ~927s (15m).
+[2025-11-18 15:51:59] Sleeping 927 sec
