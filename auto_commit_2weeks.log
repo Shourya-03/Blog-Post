@@ -2422,3 +2422,10 @@ fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': Could no
 [2025-11-18 13:02:51] push failed
 [2025-11-18 13:02:51] Push failed — retrying in ~905s (15m).
 [2025-11-18 13:02:51] Sleeping 905 sec
+[2025-11-18 13:17:57] COMMIT: fix: Fix minor bug in nohup.out (2025-11-18 13:17:57)
+[main fc97ab4] fix: Fix minor bug in nohup.out (2025-11-18 13:17:57)
+ 1 file changed, 7 insertions(+)
+fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': Could not resolve host: github.com
+[2025-11-18 13:17:57] push failed
+[2025-11-18 13:17:57] Push failed — retrying in ~915s (15m).
+[2025-11-18 13:17:57] Sleeping 915 sec
