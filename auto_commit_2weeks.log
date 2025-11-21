@@ -2876,3 +2876,10 @@ To https://github.com/Shourya-03/Blog-Post.git
 [2025-11-20 17:27:17] Sleeping 52362 sec
 [2025-11-20 22:55:29] Reached today's allowed commits (2/2). Sleeping until 8 AM tomorrow (~32671 sec).
 [2025-11-20 22:55:29] Sleeping 32671 sec
+[2025-11-21 16:42:13] COMMIT: perf: Improve performance in index.html (2025-11-21 16:42:13)
+[main c8e66c8] perf: Improve performance in index.html (2025-11-21 16:42:13)
+ 1 file changed, 14 insertions(+)
+fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': Could not resolve host: github.com
+[2025-11-21 16:42:13] push failed
+[2025-11-21 16:42:13] Push failed — retrying in ~909s (15m).
+[2025-11-21 16:42:13] Sleeping 909 sec
