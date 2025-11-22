@@ -3051,3 +3051,10 @@ fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': schannel
 [2025-11-22 14:03:29] push failed
 [2025-11-22 14:03:29] Push failed — retrying in ~947s (15m).
 [2025-11-22 14:03:29] Sleeping 947 sec
+[2025-11-22 14:03:43] COMMIT: Code cleanup in img/hero-640.jpg (2025-11-22 14:03:43)
+[main fde9901] Code cleanup in img/hero-640.jpg (2025-11-22 14:03:43)
+ 1 file changed, 7 insertions(+)
+fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': schannel: SEC_E_UNTRUSTED_ROOT (0x80090325) - The certificate chain was issued by an authority that is not trusted.
+[2025-11-22 14:03:43] push failed
+[2025-11-22 14:03:43] Push failed — retrying in ~952s (15m).
+[2025-11-22 14:03:43] Sleeping 952 sec
