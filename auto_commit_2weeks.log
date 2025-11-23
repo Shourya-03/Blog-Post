@@ -3989,3 +3989,10 @@ fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': schannel
 [2025-11-23 22:18:21] push failed
 [2025-11-23 22:18:21] Push failed — retrying in ~906s (15m).
 [2025-11-23 22:18:21] Sleeping 906 sec
+[2025-11-23 22:20:40] COMMIT: Fix typo in service-worker.js (2025-11-23 22:20:40)
+[main 5dae61f] Fix typo in service-worker.js (2025-11-23 22:20:40)
+ 1 file changed, 7 insertions(+)
+fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': schannel: SEC_E_UNTRUSTED_ROOT (0x80090325) - The certificate chain was issued by an authority that is not trusted.
+[2025-11-23 22:20:40] push failed
+[2025-11-23 22:20:40] Push failed — retrying in ~905s (15m).
+[2025-11-23 22:20:40] Sleeping 905 sec
