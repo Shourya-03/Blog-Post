@@ -4115,3 +4115,28 @@ fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': schannel
 [2025-11-23 23:50:44] push failed
 [2025-11-23 23:50:44] Push failed — retrying in ~941s (15m).
 [2025-11-23 23:50:44] Sleeping 941 sec
+[2025-11-23 23:53:03] COMMIT: Improve performance in img/hero-1920.jpg (2025-11-23 23:53:03)
+[main 39a516e] Improve performance in img/hero-1920.jpg (2025-11-23 23:53:03)
+ 1 file changed, 7 insertions(+)
+fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': schannel: SEC_E_UNTRUSTED_ROOT (0x80090325) - The certificate chain was issued by an authority that is not trusted.
+[2025-11-23 23:53:03] push failed
+[2025-11-23 23:53:03] Push failed — retrying in ~945s (15m).
+[2025-11-23 23:53:03] Sleeping 945 sec
+[2025-11-24 00:03:57] Outside active hours. Sleeping 30 min.
+[2025-11-24 00:06:26] Outside active hours. Sleeping 30 min.
+[2025-11-24 00:08:50] Outside active hours. Sleeping 30 min.
+[2025-11-24 00:33:57] Outside active hours. Sleeping 30 min.
+[2025-11-24 00:36:27] Outside active hours. Sleeping 30 min.
+[2025-11-24 00:38:50] Outside active hours. Sleeping 30 min.
+[2025-11-24 01:03:58] Outside active hours. Sleeping 30 min.
+[2025-11-24 01:06:27] Outside active hours. Sleeping 30 min.
+[2025-11-24 01:08:50] Outside active hours. Sleeping 30 min.
+[2025-11-24 01:33:58] Outside active hours. Sleeping 30 min.
+[2025-11-24 01:36:27] Outside active hours. Sleeping 30 min.
+[2025-11-24 01:38:51] Outside active hours. Sleeping 30 min.
+[2025-11-24 02:03:58] Outside active hours. Sleeping 30 min.
+[2025-11-24 02:06:28] Outside active hours. Sleeping 30 min.
+[2025-11-24 02:08:51] Outside active hours. Sleeping 30 min.
+[2025-11-24 02:33:59] Outside active hours. Sleeping 30 min.
+[2025-11-24 02:36:28] Outside active hours. Sleeping 30 min.
+[2025-11-24 02:38:52] Outside active hours. Sleeping 30 min.
