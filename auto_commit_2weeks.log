@@ -4820,3 +4820,22 @@ To https://github.com/Shourya-03/Blog-Post.git
 [2025-12-03 01:44:41] Outside active hours. Sleeping 30 min.
 [2025-12-03 02:14:42] Outside active hours. Sleeping 30 min.
 [2025-12-03 02:14:42] Outside active hours. Sleeping 30 min.
+[2025-12-03 13:03:15] COMMIT: wip: Code cleanup in img/feature-2.jpg (2025-12-03 13:03:15)
+[2025-12-03 13:03:15] COMMIT: perf: Fix minor bug (2025-12-03 13:03:15)
+[main b27f93c] perf: Fix minor bug (2025-12-03 13:03:15)
+ 1 file changed, 20 insertions(+)
+ex.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.
+[2025-12-03 13:03:15] commit failed
+fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': schannel: SEC_E_UNTRUSTED_ROOT (0x80090325) - The certificate chain was issued by an authority that is not trusted.
+[2025-12-03 13:03:15] push failed
+[2025-12-03 13:03:15] Push failed — retrying in ~927s (15m).
+[2025-12-03 13:03:15] Sleeping 927 sec
+[2025-12-03 13:03:15] push failed
+[2025-12-03 13:03:15] Push failed — retrying in ~953s (15m).
+[2025-12-03 13:03:15] Sleeping 953 sec
