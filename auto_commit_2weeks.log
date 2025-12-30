@@ -5593,3 +5593,10 @@ fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': Could no
 To https://github.com/Shourya-03/Blog-Post.git
    aa5e656..15e67b6  main -> main
 [2025-12-30 09:07:03] Done 1 / 2 for 2025-12-30
+[2025-12-30 15:57:33] COMMIT: fix: Improve performance (2025-12-30 15:57:33)
+[main 2af46ba] fix: Improve performance (2025-12-30 15:57:33)
+ 1 file changed, 6 insertions(+)
+fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': Could not resolve host: github.com
+[2025-12-30 15:57:33] push failed
+[2025-12-30 15:57:33] Push failed — retrying in ~940s (15m).
+[2025-12-30 15:57:33] Sleeping 940 sec
