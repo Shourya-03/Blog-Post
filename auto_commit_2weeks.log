@@ -5641,3 +5641,10 @@ error: failed to push some refs to 'https://github.com/Shourya-03/Blog-Post.git'
 To https://github.com/Shourya-03/Blog-Post.git
    52c5c71..9cc5d87  main -> main
 [2026-01-01 09:07:48] Done 2 / 2 for 2026-01-01
+[2026-01-02 17:42:09] COMMIT: refactor: Refactor functions in img/feature-2.jpg (2026-01-02 17:42:09)
+[main a423597] refactor: Refactor functions in img/feature-2.jpg (2026-01-02 17:42:09)
+ 1 file changed, 6 insertions(+)
+fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': Could not resolve host: github.com
+[2026-01-02 17:42:09] push failed
+[2026-01-02 17:42:09] Push failed — retrying in ~930s (15m).
+[2026-01-02 17:42:09] Sleeping 930 sec
