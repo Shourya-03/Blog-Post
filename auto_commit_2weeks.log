@@ -5687,3 +5687,10 @@ To https://github.com/Shourya-03/Blog-Post.git
 2
 0
 Quiet days: 4 8 13
+[2026-01-04 13:51:57] COMMIT: Small changes in img/feature-2.jpg (2026-01-04 13:51:57)
+[main 9bbb4ba] Small changes in img/feature-2.jpg (2026-01-04 13:51:57)
+ 1 file changed, 22 insertions(+)
+fatal: unable to access 'https://github.com/Shourya-03/Blog-Post.git/': schannel: SEC_E_UNTRUSTED_ROOT (0x80090325) - The certificate chain was issued by an authority that is not trusted.
+[2026-01-04 13:51:57] push failed
+[2026-01-04 13:51:57] Push failed — retrying in ~927s (15m).
+[2026-01-04 13:51:57] Sleeping 927 sec
